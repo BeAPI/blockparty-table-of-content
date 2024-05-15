@@ -355,7 +355,13 @@ __webpack_require__.r(__webpack_exports__);
 // eslint-disable-next-line no-undef
 const TOCBlocksAllowed = blockpartyTOC.allowedBlocks;
 
-// Check if block has attributes.content or attributes.text
+/**
+ * Check if a block is empty.
+ *
+ * @param {Object} block The block to check.
+ *
+ * @return {boolean} Whether the block is empty.
+ */
 const isEmptyBlock = block => {
   return !block.attributes.content && !block.attributes.text;
 };

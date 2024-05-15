@@ -1,8 +1,14 @@
 // eslint-disable-next-line no-undef
 const TOCBlocksAllowed = blockpartyTOC.allowedBlocks;
 
-// Check if block has attributes.content or attributes.text
-export const isEmptyBlock = (block) => {
+/**
+ * Check if a block is empty.
+ *
+ * @param {Object} block The block to check.
+ *
+ * @return {boolean} Whether the block is empty.
+ */
+export const isEmptyBlock = ( block ) => {
   return !block.attributes.content && !block.attributes.text;
 }
 
