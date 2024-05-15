@@ -78,6 +78,7 @@ function Edit({
   /**
    * Update levels
    * @param {string} text
+   * @param {number} level
    */
   const onCheckLevel = (checked, level) => {
     const checklistValues = levels.filter(value => value !== level);
@@ -372,7 +373,8 @@ const isEmptyBlock = block => {
  * clientId - The block client ID.
  * isEmpty - Flag indicating if the heading has no content.
  *
- * @param {?Array} blocks An array of blocks.
+ * @param {Array} blocks An array of blocks.
+ * @param {Array} levels An array of heading levels to include.
  *
  * @return {Array} An array of heading blocks enhanced with the properties described above.
  */

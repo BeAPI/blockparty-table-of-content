@@ -49,6 +49,7 @@ export default function Edit( { attributes, setAttributes } ) {
   /**
    * Update levels
    * @param {string} text
+   * @param {number} level
    */
   const onCheckLevel = ( checked, level ) => {
     const checklistValues = levels.filter( value => value !== level )

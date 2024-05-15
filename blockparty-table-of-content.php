@@ -207,7 +207,7 @@ function get_headings( \WP_Post $post, $levels ): array {
  * @param array $blocks
  * @param array $levels
  *
- * @return array
+ * @return array Array of headings in format [ 'heading-slug' => 'Heading Title' ]
  */
 function parse_headings_blocks( $blocks, $levels ): array {
 	$headings = [];
