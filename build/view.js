@@ -1,1 +1,49 @@
-(()=>{const t=new IntersectionObserver((t=>{const o=new Set(t.filter((t=>1==t.isIntersecting)).map((t=>t.target)));let r;for(let t=0;t<n.length;t++)if(r=n[t],void 0,(c=r.getBoundingClientRect()).top>=-1&&c.left>=0&&c.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&c.right<=(window.innerWidth||document.documentElement.clientWidth)||o.has(r)){e.forEach((t=>t.parentElement.setAttribute("data-toc-active","false")));const t=document.querySelector(`a[href="#${r.id}"]`);t&&t.parentElement.setAttribute("data-toc-active","true");break}var c})),e=document.querySelectorAll(".blockparty-table-of-content--sticky-active li a"),n=[];if(e){const o=Array.from(e).map((t=>t.getAttribute("href").replace("#","")));o.length&&o.forEach((e=>{const o=document.getElementById(e);o&&(n.push(o),t.observe(o))}))}})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*********************!*\
+  !*** ./src/view.js ***!
+  \*********************/
+function isElementInViewport(el) {
+  var rect = el.getBoundingClientRect();
+  return rect.top >= -1 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+}
+const handler = entries => {
+  // Get all entries that have just come into the viewport
+  const allHeadings = new Set(entries.filter(entry => entry.isIntersecting == true).map(entry => entry.target));
+  let currentHeading;
+  for (let i = 0; i < headings.length; i++) {
+    currentHeading = headings[i];
+    // If the section is in the viewport or it has just intersected, set it as active
+    if (isElementInViewport(currentHeading) || allHeadings.has(currentHeading)) {
+      // Disable all links and active the current one.
+      tocLinks.forEach(link => link.parentElement.setAttribute('data-toc-active', 'false'));
+      const link = document.querySelector(`a[href="#${currentHeading.id}"]`);
+      if (link) {
+        link.parentElement.setAttribute('data-toc-active', 'true');
+      }
+      break;
+    }
+  }
+};
+
+// Create a new observer with the handler and apply it to all links in table of content.
+const observer = new IntersectionObserver(handler);
+const tocLinks = document.querySelectorAll('.blockparty-table-of-content--sticky-active li a');
+const headings = [];
+if (tocLinks) {
+  const idsFromLinks = Array.from(tocLinks).map(el => {
+    return el.getAttribute('href').replace('#', '');
+  });
+  if (idsFromLinks.length) {
+    idsFromLinks.forEach(id => {
+      const heading = document.getElementById(id);
+      if (heading) {
+        headings.push(heading);
+        observer.observe(heading);
+      }
+    });
+  }
+}
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

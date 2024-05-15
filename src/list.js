@@ -12,7 +12,7 @@ export default function TableOfContentList( { headings } ) {
   }
 
   return(
-    <ol className="blockparty-table-of-content__list">
+    <ol className="blockparty-table-of-content__list is-style-no-list-style">
       { headingsFiltered.map( ( item, index ) => {
         return(
           <li key={ index } className="blockparty-table-of-content__list-item">

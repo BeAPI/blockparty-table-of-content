@@ -1,6 +1,16 @@
-.blockparty-table-of-content {
-    &--sticky {
-        position: sticky !important;
+.editor-styles-wrapper {
+    .blockparty-table-of-content {
+        &--sticky {
+            position: sticky;
+        }
+
+        &__list {
+            &-item {
+                a {
+                    color: var(--blockparty-table-of-content--links-color);
+                }
+            }
+        }
     }
 }
 

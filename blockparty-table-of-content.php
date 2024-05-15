@@ -77,6 +77,17 @@ function table_of_content_render_callback( $attributes, $content, $block ): stri
 		}
 	}
 
+	$styles = '';
+	if ( isset( $attributes['stickyTop'] ) && ! empty( $attributes['stickyTop'] ) ) {
+		$styles .= '--blockparty-table-of-content--sticky-top: ' . $attributes['stickyTop'] . ';';
+	}
+	if ( isset( $attributes['linksColor'] )  && ! empty( $attributes['linksColor'] ) ) {
+		$styles .= '--blockparty-table-of-content--links-color: ' . $attributes['linksColor'] . ';';
+	}
+	if ( isset( $attributes['linksActiveColor'] )  && ! empty( $attributes['linksActiveColor'] ) ) {
+		$styles .= '--blockparty-table-of-content--links-active-color: ' . $attributes['linksActiveColor'] . ';';
+	}
+
 	/**
 	 * Filter block's classnames.
 	 *
@@ -121,7 +132,12 @@ function table_of_content_render_callback( $attributes, $content, $block ): stri
 		'blockparty/table_of_content/template_args',
 		[
 			'block_attributes'         => $attributes,
-			'block_wrapper_attributes' => get_block_wrapper_attributes( [ 'class' => implode( ' ', $classnames ) ] ),
+			'block_wrapper_attributes' => get_block_wrapper_attributes(
+				[
+					'class' => implode( ' ', $classnames ),
+					'style' => $styles
+				]
+			),
 			'is_preview'               => isset( $_GET['is_block_editor'] ), //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			'headings'                 => get_headings( $current_post, $levels ),
 		],

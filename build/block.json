@@ -30,9 +30,18 @@
       "type": "boolean",
       "default": true
     },
+    "stickyTop": {
+      "type": "string"
+    },
     "stickyActive": {
       "type": "boolean",
       "default": true
+    },
+    "linksColor": {
+      "type": "string"
+    },
+    "linksActiveColor": {
+      "type": "string"
     }
   }
 }
