@@ -13,6 +13,7 @@ This plugin adds a block to the WordPress block editor that allows you to add a 
 == Screenshots ==
 
 1. View of the block inside the WordPress editor.
+1. View of the block inside the WordPress editor, styles settings opened.
 
 == Changelog ==
 

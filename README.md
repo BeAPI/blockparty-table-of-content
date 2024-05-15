@@ -4,6 +4,8 @@ This plugin adds a block to the WordPress block editor that allows you to add a 
 
 ![](.wordpress.org/screenshot-1.png?raw=true)
 
+![](.wordpress.org/screenshot-2.png?raw=true)
+
 ## For developers
 
 ### Allow more blocks to be included in the Table of content
