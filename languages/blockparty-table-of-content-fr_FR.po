@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Be API Table of content Block 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blockparty-table-"
 "of-content\n"
-"POT-Creation-Date: 2024-05-15T08:25:16+00:00\n"
-"PO-Revision-Date: 2024-05-15 10:26+0200\n"
+"POT-Creation-Date: 2024-05-15T10:27:40+00:00\n"
+"PO-Revision-Date: 2024-05-15 12:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -37,19 +37,19 @@ msgstr ""
 msgid "https://beapi.fr"
 msgstr ""
 
-#: views/table-of-content.php:15 build/index.js:235 build/index.js:202
+#: views/table-of-content.php:15 build/index.js:236 build/index.js:203
 msgid "Table of content"
 msgstr "Table des matières"
 
-#: build/index.js:92 build/index.js:64
+#: build/index.js:93 build/index.js:65
 msgid "Content"
 msgstr "Contenu"
 
-#: build/index.js:94 build/index.js:66
+#: build/index.js:95 build/index.js:67
 msgid "Heading levels"
 msgstr "Niveaux de titre"
 
-#: build/index.js:95 build/index.js:67
+#: build/index.js:96 build/index.js:68
 msgid ""
 "Heading levels to show in the table of content. Other individually activated "
 "blocks may also appear."
@@ -57,63 +57,63 @@ msgstr ""
 "Les niveaux de titre à afficher dans la table des matières. D’autres blocs "
 "activés individuellement peuvent également apparaître."
 
-#: build/index.js:103 build/index.js:83
+#: build/index.js:104 build/index.js:84
 msgid "Navigation label"
 msgstr "Libellé de la navigation"
 
-#: build/index.js:104 build/index.js:84
+#: build/index.js:105 build/index.js:85
 msgid "Not displayed, used for accessibility."
 msgstr "Non affiché, utilisé pour l’accessibilité."
 
-#: build/index.js:112 build/index.js:92
+#: build/index.js:113 build/index.js:93
 msgid "Colors"
 msgstr "Couleurs"
 
-#: build/index.js:118 build/index.js:97
+#: build/index.js:119 build/index.js:98
 msgid "Links color"
 msgstr "Couleur des liens"
 
-#: build/index.js:124 build/index.js:102
+#: build/index.js:125 build/index.js:103
 msgid "Links active color"
 msgstr "Couleur des liens actifs"
 
-#: build/index.js:127 build/index.js:106
+#: build/index.js:128 build/index.js:107
 msgid "Scroll behavior"
 msgstr "Comportement au défilement"
 
-#: build/index.js:129 build/index.js:108
+#: build/index.js:130 build/index.js:109
 msgid "Stick to top of screen"
 msgstr "Épingler en haut de l’écran"
 
-#: build/index.js:130 build/index.js:109
+#: build/index.js:131 build/index.js:110
 msgid "Should the table of content be sticky when scrolling?"
 msgstr ""
 "La table des matières doit-elle être épinglée (sticky) lors du défilement ?"
 
-#: build/index.js:136 build/index.js:117
+#: build/index.js:137 build/index.js:118
 msgid "Top distance"
 msgstr "Marge supérieure"
 
-#: build/index.js:137 build/index.js:118
+#: build/index.js:138 build/index.js:119
 msgid "Distance from the top of the screen when scrolling."
 msgstr "Distance depuis le haut de l’écran au défilement."
 
-#: build/index.js:152 build/index.js:127
+#: build/index.js:153 build/index.js:128
 msgid "Highlight active link"
 msgstr "Mettre en évidence le lien actif"
 
-#: build/index.js:153 build/index.js:128
+#: build/index.js:154 build/index.js:129
 msgid ""
 "Should the visible headings links be highlighted in the table of content?"
 msgstr ""
 "Les liens vers les titres visibles doivent-ils être mis en évidence dans la "
 "table des matières ?"
 
-#: build/index.js:237 build/index.js:205
+#: build/index.js:238 build/index.js:206
 msgid "Display in table of content"
 msgstr "Afficher dans la table des matières"
 
-#: build/index.js:336 build/index.js:278
+#: build/index.js:337 build/index.js:279
 msgid "(Empty heading)"
 msgstr "(Titre vide)"
 
@@ -126,6 +126,21 @@ msgstr "Table des matières"
 msgctxt "block description"
 msgid "Display a table of content for a post."
 msgstr "Affiche la table des matières d’une publication."
+
+#: build/block.json
+msgctxt "block style label"
+msgid "Default"
+msgstr "Défaut"
+
+#: build/block.json
+msgctxt "block style label"
+msgid "Ordered list"
+msgstr "Liste ordonnée"
+
+#: build/block.json
+msgctxt "block style label"
+msgid "Unordered list"
+msgstr "Liste non ordonnée"
 
 #~ msgid "Settings"
 #~ msgstr "Réglages"

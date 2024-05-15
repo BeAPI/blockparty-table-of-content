@@ -43,5 +43,20 @@
     "linksActiveColor": {
       "type": "string"
     }
-  }
+  },
+  "styles": [
+    {
+      "name": "toc-default",
+      "label": "Default",
+      "isDefault": true
+    },
+    {
+      "name": "toc-ordered",
+      "label": "Ordered list"
+    },
+    {
+      "name": "toc-unordered",
+      "label": "Unordered list"
+    }
+  ]
 }

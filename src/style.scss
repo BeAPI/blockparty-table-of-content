@@ -3,8 +3,28 @@
 
     --blockparty-table-of-content--sticky-top: var(--wp-admin--admin-bar--height, 0);
     --blockparty-table-of-content--list-style: none;
+    --blockparty-table-of-content--list-style-ordered: decimal;
+    --blockparty-table-of-content--list-style-unordered: disc;
     --blockparty-table-of-content--list-padding: 0;
     --blockparty-table-of-content--list-margin: 0;
+
+    &:not(.is-style-toc-ordered, .is-style-toc-unordered) {
+        #{$el}__list {
+            list-style-type: var(--blockparty-table-of-content--list-style);
+        }
+    }
+
+    &.is-style-toc-ordered {
+        #{$el}__list {
+            list-style-type: var(--blockparty-table-of-content--list-style-ordered);
+        }
+    }
+
+    &.is-style-toc-unordered {
+        #{$el}__list {
+            list-style-type: var(--blockparty-table-of-content--list-style-unordered);
+        }
+    }
 
     &--sticky {
         position: sticky;
@@ -22,7 +42,6 @@
     }
 
     &__list {
-        list-style: var(--blockparty-table-of-content--list-style);
         padding: var(--blockparty-table-of-content--list-padding);
         margin: var(--blockparty-table-of-content--list-margin);
 
