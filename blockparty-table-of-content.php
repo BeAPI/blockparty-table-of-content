@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Be API Table of content Block
  * Description:       A table of content block.
- * Requires at least: 6.1
+ * Requires at least: 6.0
  * Requires PHP:      7.0
  * Version:           1.0.0
  * Author:            Be API Technical team
@@ -31,6 +31,7 @@ function init() {
 		__DIR__ . '/build',
 		[
 			'render_callback' => __NAMESPACE__ . '\\table_of_content_render_callback',
+			'script'          => 'blockparty-table-of-content-view-script', // For WP < 6.1
 		]
 	);
 
