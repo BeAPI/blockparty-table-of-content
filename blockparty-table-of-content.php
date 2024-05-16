@@ -3,7 +3,7 @@
  * Plugin Name:       Be API Table of content Block
  * Description:       A table of content block.
  * Requires at least: 6.0
- * Requires PHP:      7.0
+ * Requires PHP:      7.4
  * Version:           1.0.0
  * Author:            Be API Technical team
  * Author URI:        https://beapi.fr
@@ -194,8 +194,7 @@ function get_headings( \WP_Post $post, $levels ): array {
 		return $data;
 	}
 
-	$blocks   = parse_blocks( $post->post_content );
-	$headings = parse_headings_blocks( $blocks, $levels );
+	$headings = parse_headings_blocks( parse_blocks( $post->post_content ), $levels );
 
 	wp_cache_set( $post->ID, $headings, BEAPI_TOC_BLOCK_CACHE_GROUP );
 

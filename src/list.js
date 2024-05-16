@@ -17,13 +17,11 @@ export default function TableOfContentList( { headings } ) {
         return(
           <li key={ index } className="blockparty-table-of-content__list-item">
             <a href={ `#block-${ item.clientId }` }>
-              { item.isEmpty
-                ? <em>{ __( '(Empty heading)', 'blockparty-table-of-content' ) }</em>
-                : getTextContent(
-                  create( {
-                    html: item.title,
-                  } )
-                ) }
+              { getTextContent(
+                create( {
+                  html: item.title,
+                } )
+              ) }
             </a>
           </li>
         )

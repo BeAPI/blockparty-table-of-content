@@ -9,19 +9,17 @@ class TOC {
 
     const observer = new IntersectionObserver(this.headingsScrollObserver);
 
-    if ( this.tocLinks ) {
-      const idsFromLinks = Array.from(this.tocLinks).map((el) => {
-        return el.getAttribute('href').replace('#', '');
-      });
+    if ( this.tocLinks.length ) {
+      const idsFromLinks = Array.from(this.tocLinks).map((el) => el.getAttribute('href').replace('#', ''));
 
       if (idsFromLinks.length) {
-        idsFromLinks.forEach((id) => {
+        for (const id of idsFromLinks) {
           const heading = document.getElementById(id);
           if (heading) {
             this.headings.push(heading);
             observer.observe(heading);
           }
-        });
+        }
       }
     }
   }
@@ -64,7 +62,9 @@ class TOC {
       // If the section is in the viewport or it has just intersected, set it as active
       if (this.isElementInViewport(currentHeading) || allHeadings.has(currentHeading)) {
         // Disable all links and active the current one.
-        this.tocLinks.forEach((link) => link.parentElement.setAttribute('data-toc-active', 'false'));
+        for (const link of this.tocLinks) {
+          link.parentElement.setAttribute('data-toc-active', 'false')
+        }
         const link = this.toc.querySelector(`a[href="#${currentHeading.id}"]`)
         if (link) {
           link.parentElement.setAttribute('data-toc-active', 'true');

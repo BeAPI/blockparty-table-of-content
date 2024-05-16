@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-05-15T10:27:40+00:00\n"
+"POT-Creation-Date: 2024-05-16T09:35:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: blockparty-table-of-content\n"
@@ -35,94 +35,94 @@ msgid "https://beapi.fr"
 msgstr ""
 
 #: views/table-of-content.php:15
-#: build/index.js:236
-#: build/index.js:203
+#: build/index.js:238
+#: build/index.js:211
 msgid "Table of content"
 msgstr ""
 
 #: build/index.js:93
-#: build/index.js:65
+#: build/index.js:66
 msgid "Content"
 msgstr ""
 
 #: build/index.js:95
-#: build/index.js:67
+#: build/index.js:68
 msgid "Heading levels"
 msgstr ""
 
 #: build/index.js:96
-#: build/index.js:68
+#: build/index.js:69
 msgid "Heading levels to show in the table of content. Other individually activated blocks may also appear."
 msgstr ""
 
 #: build/index.js:104
-#: build/index.js:84
+#: build/index.js:85
 msgid "Navigation label"
 msgstr ""
 
 #: build/index.js:105
-#: build/index.js:85
+#: build/index.js:86
 msgid "Not displayed, used for accessibility."
 msgstr ""
 
 #: build/index.js:113
-#: build/index.js:93
+#: build/index.js:94
 msgid "Colors"
 msgstr ""
 
 #: build/index.js:119
-#: build/index.js:98
+#: build/index.js:99
 msgid "Links color"
 msgstr ""
 
 #: build/index.js:125
-#: build/index.js:103
+#: build/index.js:104
 msgid "Links active color"
 msgstr ""
 
 #: build/index.js:128
-#: build/index.js:107
+#: build/index.js:108
 msgid "Scroll behavior"
 msgstr ""
 
 #: build/index.js:130
-#: build/index.js:109
+#: build/index.js:110
 msgid "Stick to top of screen"
 msgstr ""
 
 #: build/index.js:131
-#: build/index.js:110
+#: build/index.js:111
 msgid "Should the table of content be sticky when scrolling?"
 msgstr ""
 
 #: build/index.js:137
-#: build/index.js:118
+#: build/index.js:119
 msgid "Top distance"
 msgstr ""
 
 #: build/index.js:138
-#: build/index.js:119
+#: build/index.js:120
 msgid "Distance from the top of the screen when scrolling."
 msgstr ""
 
 #: build/index.js:153
-#: build/index.js:128
+#: build/index.js:129
 msgid "Highlight active link"
 msgstr ""
 
 #: build/index.js:154
-#: build/index.js:129
+#: build/index.js:130
 msgid "Should the visible headings links be highlighted in the table of content?"
 msgstr ""
 
-#: build/index.js:238
-#: build/index.js:206
-msgid "Display in table of content"
+#: build/index.js:165
+#: build/index.js:145
+msgid "No blocks found to show in Table of content"
 msgstr ""
 
-#: build/index.js:337
-#: build/index.js:279
-msgid "(Empty heading)"
+#: build/index.js:240
+#: build/index.js:214
+msgid "Display in table of content"
 msgstr ""
 
 #: build/block.json

@@ -2,14 +2,15 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "blockparty/table-of-content",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "Table of content",
   "category": "widgets",
   "icon": "editor-ul",
   "description": "Display a table of content for a post.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "multiple": false
   },
   "textdomain": "blockparty-table-of-content",
   "editorScript": "file:./index.js",

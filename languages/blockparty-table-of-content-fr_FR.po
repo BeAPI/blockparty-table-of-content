@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Be API Table of content Block 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blockparty-table-"
 "of-content\n"
-"POT-Creation-Date: 2024-05-15T10:27:40+00:00\n"
-"PO-Revision-Date: 2024-05-15 12:28+0200\n"
+"POT-Creation-Date: 2024-05-16T09:35:45+00:00\n"
+"PO-Revision-Date: 2024-05-16 11:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -37,19 +37,19 @@ msgstr ""
 msgid "https://beapi.fr"
 msgstr ""
 
-#: views/table-of-content.php:15 build/index.js:236 build/index.js:203
+#: views/table-of-content.php:15 build/index.js:238 build/index.js:211
 msgid "Table of content"
 msgstr "Table des matières"
 
-#: build/index.js:93 build/index.js:65
+#: build/index.js:93 build/index.js:66
 msgid "Content"
 msgstr "Contenu"
 
-#: build/index.js:95 build/index.js:67
+#: build/index.js:95 build/index.js:68
 msgid "Heading levels"
 msgstr "Niveaux de titre"
 
-#: build/index.js:96 build/index.js:68
+#: build/index.js:96 build/index.js:69
 msgid ""
 "Heading levels to show in the table of content. Other individually activated "
 "blocks may also appear."
@@ -57,65 +57,65 @@ msgstr ""
 "Les niveaux de titre à afficher dans la table des matières. D’autres blocs "
 "activés individuellement peuvent également apparaître."
 
-#: build/index.js:104 build/index.js:84
+#: build/index.js:104 build/index.js:85
 msgid "Navigation label"
 msgstr "Libellé de la navigation"
 
-#: build/index.js:105 build/index.js:85
+#: build/index.js:105 build/index.js:86
 msgid "Not displayed, used for accessibility."
 msgstr "Non affiché, utilisé pour l’accessibilité."
 
-#: build/index.js:113 build/index.js:93
+#: build/index.js:113 build/index.js:94
 msgid "Colors"
 msgstr "Couleurs"
 
-#: build/index.js:119 build/index.js:98
+#: build/index.js:119 build/index.js:99
 msgid "Links color"
 msgstr "Couleur des liens"
 
-#: build/index.js:125 build/index.js:103
+#: build/index.js:125 build/index.js:104
 msgid "Links active color"
 msgstr "Couleur des liens actifs"
 
-#: build/index.js:128 build/index.js:107
+#: build/index.js:128 build/index.js:108
 msgid "Scroll behavior"
 msgstr "Comportement au défilement"
 
-#: build/index.js:130 build/index.js:109
+#: build/index.js:130 build/index.js:110
 msgid "Stick to top of screen"
 msgstr "Épingler en haut de l’écran"
 
-#: build/index.js:131 build/index.js:110
+#: build/index.js:131 build/index.js:111
 msgid "Should the table of content be sticky when scrolling?"
 msgstr ""
 "La table des matières doit-elle être épinglée (sticky) lors du défilement ?"
 
-#: build/index.js:137 build/index.js:118
+#: build/index.js:137 build/index.js:119
 msgid "Top distance"
 msgstr "Marge supérieure"
 
-#: build/index.js:138 build/index.js:119
+#: build/index.js:138 build/index.js:120
 msgid "Distance from the top of the screen when scrolling."
 msgstr "Distance depuis le haut de l’écran au défilement."
 
-#: build/index.js:153 build/index.js:128
+#: build/index.js:153 build/index.js:129
 msgid "Highlight active link"
 msgstr "Mettre en évidence le lien actif"
 
-#: build/index.js:154 build/index.js:129
+#: build/index.js:154 build/index.js:130
 msgid ""
 "Should the visible headings links be highlighted in the table of content?"
 msgstr ""
 "Les liens vers les titres visibles doivent-ils être mis en évidence dans la "
 "table des matières ?"
 
-#: build/index.js:238 build/index.js:206
+#: build/index.js:165 build/index.js:145
+msgid "No blocks found to show in Table of content"
+msgstr "Aucun bloc trouvé à afficher dans la table des matières"
+
+#: build/index.js:240 build/index.js:214
 msgid "Display in table of content"
 msgstr "Afficher dans la table des matières"
-
-#: build/index.js:337 build/index.js:279
-msgid "(Empty heading)"
-msgstr "(Titre vide)"
 
 #: build/block.json
 msgctxt "block title"
@@ -141,6 +141,9 @@ msgstr "Liste ordonnée"
 msgctxt "block style label"
 msgid "Unordered list"
 msgstr "Liste non ordonnée"
+
+#~ msgid "(Empty heading)"
+#~ msgstr "(Titre vide)"
 
 #~ msgid "Settings"
 #~ msgstr "Réglages"

@@ -26,9 +26,10 @@ import { getPostHeadings } from './utils';
 import TableOfContentList from './list';
 import './editor.scss';
 
+const LEVELS_AVAILABLE = [ 1, 2, 3, 4, 5, 6 ];
+
 export default function Edit( { attributes, setAttributes } ) {
   const { levels, heading, sticky, stickyTop, stickyActive, linksColor, linksActiveColor } = attributes;
-  const levelsAvailable = [ 1, 2, 3, 4, 5, 6 ];
 
   const blocks         = useSelect( ( select ) => select( 'core/block-editor' ).getBlocks() );
   const latestHeadings = getPostHeadings( blocks, levels );
@@ -69,7 +70,7 @@ export default function Edit( { attributes, setAttributes } ) {
             className="components-base-control__toc-levels"
           >
             {
-              levelsAvailable.map( ( level ) => (
+              LEVELS_AVAILABLE.map( ( level ) => (
                 <CheckboxControl
                   key={ level }
                   label={ __( 'H' + level ) }
@@ -135,9 +136,16 @@ export default function Edit( { attributes, setAttributes } ) {
           }
         </PanelBody>
       </InspectorControls>
-      <nav { ...blockProps }>
-        <TableOfContentList headings={ latestHeadings } />
-      </nav>
+      { latestHeadings.length > 0 ? (
+          <nav { ...blockProps }>
+            <TableOfContentList headings={ latestHeadings } />
+          </nav>
+       ) : (
+          <p { ...blockProps }>
+            { __( 'No blocks found to show in Table of content', 'blockparty-table-of-content' ) }
+          </p>
+        )
+      }
     </>
   );
 }
