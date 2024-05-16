@@ -255,7 +255,9 @@ function render_block( $block_content, $block ): string {
 
 	if ( $is_block_in_toc ) {
 		$dom = new \DOMDocument();
-		$dom->loadHTML( $block_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		// mb_convert_encoding is used to avoid encoding issues with special characters.
+		// LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD is used to avoid adding html and body tags.
+		$dom->loadHTML( mb_convert_encoding( $block_content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
 
 		if ( ! $dom ) {
 			return $block_content;
