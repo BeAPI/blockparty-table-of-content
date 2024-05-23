@@ -230,12 +230,17 @@ function parse_headings_blocks( $blocks, $levels ): array {
 				}
 			}
 
-			$block_content = strip_tags( $block['innerHTML'] );
+			$block_content = $block['innerHTML'];
 			if ( empty( $block_content ) ) {
 				continue;
 			}
 
-			$headings[ sanitize_title( $block_content ) ] = $block_content;
+			// Use existing ID or generate one if don't exist.
+			if ( preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
+				$headings[ $matches[1] ] = strip_tags( $block_content );
+			} else {
+				$headings[ sanitize_title( $block_content ) ] = strip_tags( $block_content );
+			}
 		}
 	}
 
@@ -255,9 +260,9 @@ function render_block( $block_content, $block ): string {
 
 	if ( $is_block_in_toc ) {
 		$dom = new \DOMDocument();
-		// mb_convert_encoding is used to avoid encoding issues with special characters.
+		// htmlspecialchars_decode( htmlentities() ) is used to avoid encoding issues with special characters.
 		// LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD is used to avoid adding html and body tags.
-		$dom->loadHTML( mb_convert_encoding( $block_content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		$dom->loadHTML( htmlspecialchars_decode( htmlentities( $block_content ) ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
 
 		if ( ! $dom ) {
 			return $block_content;
@@ -265,7 +270,8 @@ function render_block( $block_content, $block ): string {
 
 		$block_html = $dom->documentElement;
 
-		if ( $block_html ) {
+		// Set block ID if HTML is not empty and block does not have an ID.
+		if ( $block_html && ! $block_html->getAttribute( 'id' ) ) {
 			$block_html->setAttribute( 'id', sanitize_title( $block_html->textContent ) );
 			$block_content = $dom->saveHTML();
 		}
