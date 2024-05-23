@@ -21,7 +21,7 @@ define( 'BEAPI_TOC_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_PLUGIN_DIRNAME', basename( rtrim( dirname( __FILE__ ), '/' ) ) );
 define( 'BEAPI_TOC_BLOCK_CACHE_GROUP', 'block-toc-headings-list' );
 
-define( 'BEAPI_TOC_BLOCK_THIRD_BLOCKS_INCLUDED', [ 'core/paragraph' ] );
+define( 'BEAPI_TOC_BLOCK_THIRD_BLOCKS_INCLUDED', [ 'core/paragraph', 'core/heading' ] );
 
 function init() {
 	// Load available translations.
@@ -43,8 +43,6 @@ function init() {
 		'allowedBlocks' => apply_filters( 'toc_third_blocks_included', BEAPI_TOC_BLOCK_THIRD_BLOCKS_INCLUDED ),
 	];
 	wp_localize_script( 'blockparty-table-of-content-editor-script', 'blockpartyTOC', $constants );
-
-	add_filter( 'render_block', __NAMESPACE__ . '\\render_block', 10, 2 );
 
 	do_action( 'blockparty-table-of-content-block_init' );
 }
@@ -178,7 +176,6 @@ function clean_post_cache( int $post_id ) {
 	wp_cache_delete( $post_id, BEAPI_TOC_BLOCK_CACHE_GROUP );
 }
 
-
 /**
  * Get headings from a post content.
  *
@@ -230,48 +227,19 @@ function parse_headings_blocks( $blocks, $levels ): array {
 				}
 			}
 
-			$block_content = strip_tags( $block['innerHTML'] );
+			$block_content = $block['innerHTML'];
 			if ( empty( $block_content ) ) {
 				continue;
 			}
 
-			$headings[ sanitize_title( $block_content ) ] = $block_content;
+			$re = '/id="([^"]*)"/';
+			if ( preg_match( $re, $block_content, $matches ) ) {
+				$headings[ $matches[1] ] = strip_tags( $block_content );
+			}
 		}
 	}
 
 	return $headings;
-}
-
-/**
- * Add an ID to a block content.
- *
- * @param string $block_content
- * @param array $block
- *
- * @return string
- */
-function render_block( $block_content, $block ): string {
-	$is_block_in_toc = is_block_in_toc( $block );
-
-	if ( $is_block_in_toc ) {
-		$dom = new \DOMDocument();
-		// mb_convert_encoding is used to avoid encoding issues with special characters.
-		// LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD is used to avoid adding html and body tags.
-		$dom->loadHTML( mb_convert_encoding( $block_content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-
-		if ( ! $dom ) {
-			return $block_content;
-		}
-
-		$block_html = $dom->documentElement;
-
-		if ( $block_html ) {
-			$block_html->setAttribute( 'id', sanitize_title( $block_html->textContent ) );
-			$block_content = $dom->saveHTML();
-		}
-	}
-
-	return $block_content;
 }
 
 /**
