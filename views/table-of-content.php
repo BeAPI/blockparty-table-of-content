@@ -25,7 +25,7 @@ if ( empty( $headings ) || empty( $levels ) ) {
 				<?php
 				printf(
 					'<a href="#%s">%s</a>',
-					esc_attr( $heading['slug'] ),
+					esc_attr( $heading['id'] ),
 					esc_html( $heading['title'] )
 				);
 				?>
