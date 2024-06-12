@@ -223,6 +223,7 @@ function parse_headings_blocks( $blocks, $levels ): array {
 			// Loop inside inner blocks
 			$headings = array_merge( $headings, parse_headings_blocks( $block[ 'innerBlocks' ], $levels ) );
 		} elseif ( $is_block_in_toc ) {
+			$block_level = 2; // Default level for non-heading blocks.
 			if ( 'core/heading' === $block['blockName'] ) {
 				$block_level = $block['attrs']['level'] ?? 2; // H2 do not have level attribute.
 				if ( ! empty( $levels ) && ! in_array( $block_level, $levels ) ) {
@@ -235,12 +236,19 @@ function parse_headings_blocks( $blocks, $levels ): array {
 				continue;
 			}
 
+			$heading = [
+				'level' => $block_level,
+				'title' => strip_tags( $block_content ),
+			];
+
 			// Use existing ID or generate one if don't exist.
 			if ( preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
-				$headings[ $matches[1] ] = strip_tags( $block_content );
+				$heading['id'] = $matches[1];
 			} else {
-				$headings[ sanitize_title( $block_content ) ] = strip_tags( $block_content );
+				$heading['id'] = sanitize_title( $block_content );
 			}
+
+			$headings[] = $heading;
 		}
 	}
 

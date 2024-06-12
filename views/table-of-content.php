@@ -20,13 +20,13 @@ if ( empty( $headings ) || empty( $levels ) ) {
 ?>
 <nav <?php echo $args['block_wrapper_attributes']; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> aria-label="<?php echo esc_attr( $heading ); ?>">
 	<ol class="blockparty-table-of-content__list is-style-no-list-style">
-		<?php foreach ( $headings as $heading_slug => $heading_title ) : ?>
-			<li class="blockparty-table-of-content__list-item" data-toc-active="false">
+		<?php foreach ( $headings as $heading ) : ?>
+			<li class="blockparty-table-of-content__list-item" data-toc-active="false" data-toc-level="<?php echo esc_attr( $heading['level'] ); ?>">
 				<?php
 				printf(
 					'<a href="#%s">%s</a>',
-					esc_attr( $heading_slug ),
-					esc_html( $heading_title )
+					esc_attr( $heading['id'] ),
+					esc_html( $heading['title'] )
 				);
 				?>
 			</li>
