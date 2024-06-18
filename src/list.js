@@ -14,9 +14,10 @@ export default function TableOfContentList( { headings } ) {
 		<ol className="blockparty-table-of-content__list is-style-no-list-style">
 			{ headingsFiltered.map( ( item, index ) => {
 				return (
-					<li
+          <li
 						key={ index }
 						className="blockparty-table-of-content__list-item"
+            data-toc-level={ item.level }
 					>
 						<a href={ `#block-${ item.clientId }` }>
 							{ getTextContent(
