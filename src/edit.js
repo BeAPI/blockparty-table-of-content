@@ -83,20 +83,22 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Content', 'blockparty-table-of-content' ) }
 				>
 					<BaseControl
-						label={ __(
-							'Heading levels',
-							'blockparty-table-of-content'
-						) }
 						help={ __(
 							'Heading levels to show in the table of content. Other individually activated blocks may also appear.',
 							'blockparty-table-of-content'
 						) }
 						className="components-base-control__toc-levels"
 					>
+						<BaseControl.VisualLabel>
+							{ __(
+								'Heading levels',
+								'blockparty-table-of-content'
+							) }
+						</BaseControl.VisualLabel>
 						{ LEVELS_AVAILABLE.map( ( level ) => (
 							<CheckboxControl
 								key={ level }
-								label={ __( 'H' + level ) }
+								label={ 'H' + level }
 								checked={
 									levels.includes( level ) ? true : false
 								}
@@ -117,7 +119,9 @@ export default function Edit( { attributes, setAttributes } ) {
 							'blockparty-table-of-content'
 						) }
 						value={ heading }
-						onChange={ ( heading ) => setAttributes( { heading } ) }
+						onChange={ ( value ) =>
+							setAttributes( { heading: value } )
+						}
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -127,8 +131,8 @@ export default function Edit( { attributes, setAttributes } ) {
 					colorSettings={ [
 						{
 							value: linksColor,
-							onChange: ( linksColor ) =>
-								setAttributes( { linksColor } ),
+							onChange: ( value ) =>
+								setAttributes( { linksColor: value } ),
 							label: __(
 								'Links color',
 								'blockparty-table-of-content'
@@ -136,8 +140,8 @@ export default function Edit( { attributes, setAttributes } ) {
 						},
 						{
 							value: linksActiveColor,
-							onChange: ( linksActiveColor ) =>
-								setAttributes( { linksActiveColor } ),
+							onChange: ( value ) =>
+								setAttributes( { linksActiveColor: value } ),
 							label: __(
 								'Links active color',
 								'blockparty-table-of-content'
@@ -161,7 +165,9 @@ export default function Edit( { attributes, setAttributes } ) {
 							'blockparty-table-of-content'
 						) }
 						checked={ sticky }
-						onChange={ ( sticky ) => setAttributes( { sticky } ) }
+						onChange={ ( value ) =>
+							setAttributes( { sticky: value } )
+						}
 					/>
 					{ sticky && (
 						<>
@@ -179,8 +185,8 @@ export default function Edit( { attributes, setAttributes } ) {
 									{ value: 'px', label: 'px', default: 0 },
 									{ value: 'rem', label: 'rem', default: 0 },
 								] }
-								onChange={ ( stickyTop ) =>
-									setAttributes( { stickyTop } )
+								onChange={ ( value ) =>
+									setAttributes( { stickyTop: value } )
 								}
 							/>
 							<ToggleControl
@@ -193,8 +199,8 @@ export default function Edit( { attributes, setAttributes } ) {
 									'blockparty-table-of-content'
 								) }
 								checked={ stickyActive }
-								onChange={ ( stickyActive ) =>
-									setAttributes( { stickyActive } )
+								onChange={ ( value ) =>
+									setAttributes( { stickyActive: value } )
 								}
 							/>
 						</>

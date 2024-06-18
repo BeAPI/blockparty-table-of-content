@@ -19,7 +19,8 @@
 	"viewScript": "file:./view.js",
 	"attributes": {
 		"heading": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		},
 		"levels": {
 			"type": "array",
@@ -27,20 +28,23 @@
 		},
 		"sticky": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"stickyTop": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		},
 		"stickyActive": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"linksColor": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		},
 		"linksActiveColor": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		}
 	},
 	"styles": [

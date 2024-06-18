@@ -1,3 +1,4 @@
+/* global IntersectionObserver:readonly */
 'use strict';
 
 class TOC {
@@ -34,7 +35,7 @@ class TOC {
 	 * Check if an element is in the viewport
 	 *
 	 * @param {HTMLElement} el
-	 * @return {boolean}
+	 * @return {boolean} true if the element is in the viewport
 	 */
 	isElementInViewport = ( el ) => {
 		const rect = el.getBoundingClientRect();
