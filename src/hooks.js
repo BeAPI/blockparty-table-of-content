@@ -11,68 +11,74 @@ import { BaseControl, ToggleControl } from '@wordpress/components';
 
 /**
  * Declare the show in TOC Attribute
+ * @param settings
+ * @param name
  */
 const setTOCSidebarAttribute = ( settings, name ) => {
-  if ( ! TOCBlocksAllowed.includes( name ) ) {
-    return settings;
-  }
+	if ( ! TOCBlocksAllowed.includes( name ) ) {
+		return settings;
+	}
 
-  return Object.assign( {}, settings, {
-    attributes: Object.assign( {}, settings.attributes, {
-      showInTOC: {
-        type: 'boolean',
-        default: false
-      }
-    } ),
-  } );
+	return Object.assign( {}, settings, {
+		attributes: Object.assign( {}, settings.attributes, {
+			showInTOC: {
+				type: 'boolean',
+				default: false,
+			},
+		} ),
+	} );
 };
 
 wp.hooks.addFilter(
-  'blocks.registerBlockType',
-  'blockparty/set-sidebar-select-attribute',
-  setTOCSidebarAttribute
+	'blocks.registerBlockType',
+	'blockparty/set-sidebar-select-attribute',
+	setTOCSidebarAttribute
 );
-
 
 /**
  * Add Table of content settings to blocks
  */
 const addTOCAttributes = createHigherOrderComponent( ( BlockEdit ) => {
-  return ( props ) => {
+	return ( props ) => {
+		// If current block is not allowed
+		if ( ! TOCBlocksAllowed.includes( props.name ) ) {
+			return <BlockEdit { ...props } />;
+		}
 
-    // If current block is not allowed
-    if ( ! TOCBlocksAllowed.includes( props.name ) ) {
-      return (
-        <BlockEdit { ...props } />
-      );
-    }
+		const { attributes, setAttributes, isSelected } = props;
+		const { showInTOC } = attributes;
 
-    const { attributes, setAttributes, isSelected } = props;
-    const { showInTOC } = attributes;
-
-    return (
-      <>
-        <BlockEdit { ...props } />
-        { isSelected && (
-          <InspectorAdvancedControls>
-            <BaseControl
-              label={ __( 'Table of content', 'blockparty-table-of-content' ) }
-            >
-              <ToggleControl
-                label={ __( 'Display in table of content', 'blockparty-table-of-content' ) }
-                checked={ showInTOC }
-                onChange={ ( showInTOC ) => setAttributes( { showInTOC } ) }
-              />
-            </BaseControl>
-          </InspectorAdvancedControls>
-        ) }
-      </>
-    );
-  };
+		return (
+			<>
+				<BlockEdit { ...props } />
+				{ isSelected && (
+					<InspectorAdvancedControls>
+						<BaseControl
+							label={ __(
+								'Table of content',
+								'blockparty-table-of-content'
+							) }
+						>
+							<ToggleControl
+								label={ __(
+									'Display in table of content',
+									'blockparty-table-of-content'
+								) }
+								checked={ showInTOC }
+								onChange={ ( showInTOC ) =>
+									setAttributes( { showInTOC } )
+								}
+							/>
+						</BaseControl>
+					</InspectorAdvancedControls>
+				) }
+			</>
+		);
+	};
 }, 'addTOCAttributes' );
 
 wp.hooks.addFilter(
-  'editor.BlockEdit',
-  'blockparty/add-toc-attributes',
-  addTOCAttributes
+	'editor.BlockEdit',
+	'blockparty/add-toc-attributes',
+	addTOCAttributes
 );

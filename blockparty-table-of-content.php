@@ -13,20 +13,22 @@
  *
  * @package           create-block
  */
+
 namespace Beapi\Toc_Block;
 
 define( 'BEAPI_TOC_BLOCK_VERSION', '1.0.0' );
 define( 'BEAPI_TOC_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
-define( 'BEAPI_TOC_BLOCK_PLUGIN_DIRNAME', basename( rtrim( dirname( __FILE__ ), '/' ) ) );
+define( 'BEAPI_TOC_BLOCK_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_CACHE_GROUP', 'block-toc-headings-list' );
 
 define( 'BEAPI_TOC_BLOCK_THIRD_BLOCKS_INCLUDED', [ 'core/paragraph' ] );
 
 function init() {
 	// Load available translations.
-	load_plugin_textdomain( 'blockparty-table-of-content', false, BEAPI_TOC_BLOCK_PLUGIN_DIRNAME . '/languages' );
+	load_plugin_textdomain( 'blockparty-table-of-content', false, dirname( BEAPI_TOC_BLOCK_PLUGIN_BASENAME ) . '/languages' );
 
+	/** @psalm-suppress InvalidArgument -- script key use for WP 6.0 */
 	register_block_type(
 		__DIR__ . '/build',
 		[
@@ -82,10 +84,10 @@ function table_of_content_render_callback( $attributes, $content, $block ): stri
 	if ( isset( $attributes['stickyTop'] ) && ! empty( $attributes['stickyTop'] ) ) {
 		$styles .= '--blockparty-table-of-content--sticky-top: ' . $attributes['stickyTop'] . ';';
 	}
-	if ( isset( $attributes['linksColor'] )  && ! empty( $attributes['linksColor'] ) ) {
+	if ( isset( $attributes['linksColor'] ) && ! empty( $attributes['linksColor'] ) ) {
 		$styles .= '--blockparty-table-of-content--links-color: ' . $attributes['linksColor'] . ';';
 	}
-	if ( isset( $attributes['linksActiveColor'] )  && ! empty( $attributes['linksActiveColor'] ) ) {
+	if ( isset( $attributes['linksActiveColor'] ) && ! empty( $attributes['linksActiveColor'] ) ) {
 		$styles .= '--blockparty-table-of-content--links-active-color: ' . $attributes['linksActiveColor'] . ';';
 	}
 
@@ -136,7 +138,7 @@ function table_of_content_render_callback( $attributes, $content, $block ): stri
 			'block_wrapper_attributes' => get_block_wrapper_attributes(
 				[
 					'class' => implode( ' ', $classnames ),
-					'style' => $styles
+					'style' => $styles,
 				]
 			),
 			'is_preview'               => isset( $_GET['is_block_editor'] ), //phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -221,7 +223,7 @@ function parse_headings_blocks( $blocks, $levels ): array {
 
 		if ( ! empty( $block['innerBlocks'] ) ) {
 			// Loop inside inner blocks
-			$headings = array_merge( $headings, parse_headings_blocks( $block[ 'innerBlocks' ], $levels ) );
+			$headings = array_merge( $headings, parse_headings_blocks( $block['innerBlocks'], $levels ) );
 		} elseif ( $is_block_in_toc ) {
 			$block_level = 2; // Default level for non-heading blocks.
 			if ( 'core/heading' === $block['blockName'] ) {
@@ -238,11 +240,11 @@ function parse_headings_blocks( $blocks, $levels ): array {
 
 			$heading = [
 				'level' => $block_level,
-				'title' => strip_tags( $block_content ),
+				'title' => wp_strip_all_tags( $block_content ),
 			];
 
 			// Use existing ID or generate one if don't exist.
-			if ( preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
+			if ( false !== preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
 				$heading['id'] = $matches[1];
 			} else {
 				$heading['id'] = sanitize_title( $block_content );
@@ -270,18 +272,26 @@ function render_block( $block_content, $block ): string {
 		$dom = new \DOMDocument();
 		// htmlspecialchars_decode( htmlentities() ) is used to avoid encoding issues with special characters.
 		// LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD is used to avoid adding html and body tags.
-		$dom->loadHTML( htmlspecialchars_decode( htmlentities( $block_content ) ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		$dom->loadHTML(
+			htmlspecialchars_decode(
+				htmlentities( $block_content )
+			),
+			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+		);
 
 		if ( ! $dom ) {
 			return $block_content;
 		}
 
-		$block_html = $dom->documentElement;
+		$block_html = $dom->documentElement;  //phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
 		// Set block ID if HTML is not empty and block does not have an ID.
 		if ( $block_html && ! $block_html->getAttribute( 'id' ) ) {
-			$block_html->setAttribute( 'id', sanitize_title( $block_html->textContent ) );
-			$block_content = $dom->saveHTML();
+			$block_html->setAttribute( 'id', sanitize_title( $block_html->textContent ) ); //phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+			$updated_block_content = $dom->saveHTML();
+			if ( false !== $updated_block_content ) {
+				$block_content = $updated_block_content;
+			}
 		}
 	}
 

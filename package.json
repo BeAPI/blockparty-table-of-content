@@ -13,13 +13,18 @@
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
-    "make-pot": "wp i18n make-pot . languages/blockparty-table-of-content.pot --slug=blockparty-table-of-content --domain=blockparty-table-of-content --exclude=node_modules,src",
-    "make-json": "wp i18n make-json languages/ --no-purge"
+		"env": "wp-env",
+		"make-pot": "wp i18n make-pot . languages/blockparty-table-of-content.pot --slug=blockparty-table-of-content --domain=blockparty-table-of-content --exclude=node_modules,src",
+		"make-json": "wp i18n make-json languages/ --no-purge"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.8.0"
+		"@wordpress/env": "^10.0.0",
+		"@wordpress/scripts": "^27.9.0"
 	},
 	"dependencies": {
 		"classnames": "^2.5.1"
+	},
+	"volta": {
+		"node": "20.14.0"
 	}
 }
