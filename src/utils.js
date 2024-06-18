@@ -12,14 +12,19 @@ const TOCBlocksAllowed = blockpartyTOC.allowedBlocks;
  * @return {Array} An array of heading blocks enhanced with the properties described above.
  */
 export const getPostHeadings = ( blocks = [], levels ) => {
-  return blocks.flatMap( ( block = {} ) => {
-    if ( ( 'core/heading' === block.name && levels?.includes( block.attributes.level ) ) || ( TOCBlocksAllowed.includes( block.name ) && block.attributes.showInTOC ) ) {
-      return {
-        title: block.attributes.content || block.attributes.text,
-        clientId: block.clientId,
-      };
-    }
-    // Recursively get headings from inner blocks.
-    return getPostHeadings( block.innerBlocks, levels );
-  } );
+	return blocks.flatMap( ( block = {} ) => {
+		if (
+			( 'core/heading' === block.name &&
+				levels?.includes( block.attributes.level ) ) ||
+			( TOCBlocksAllowed.includes( block.name ) &&
+				block.attributes.showInTOC )
+		) {
+			return {
+				title: block.attributes.content || block.attributes.text,
+				clientId: block.clientId,
+			};
+		}
+		// Recursively get headings from inner blocks.
+		return getPostHeadings( block.innerBlocks, levels );
+	} );
 };
