@@ -244,7 +244,7 @@ function parse_headings_blocks( $blocks, $levels ): array {
 			];
 
 			// Use existing ID or generate one if don't exist.
-			if ( false !== preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
+			if ( preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
 				$heading['id'] = $matches[1];
 			} else {
 				$heading['id'] = sanitize_title( $block_content );

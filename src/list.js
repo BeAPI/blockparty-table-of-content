@@ -3,7 +3,7 @@ import { create, getTextContent } from '@wordpress/rich-text';
 export default function TableOfContentList( { headings } ) {
 	// Remove null elements
 	const headingsFiltered = headings.filter( function ( heading ) {
-		return heading != null;
+		return heading !== null;
 	} );
 
 	if ( ! headingsFiltered ) {
@@ -17,6 +17,7 @@ export default function TableOfContentList( { headings } ) {
 					<li
 						key={ index }
 						className="blockparty-table-of-content__list-item"
+						data-toc-level={ item.level }
 					>
 						<a href={ `#block-${ item.clientId }` }>
 							{ getTextContent(

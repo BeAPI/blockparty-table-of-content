@@ -11,8 +11,8 @@ import { BaseControl, ToggleControl } from '@wordpress/components';
 
 /**
  * Declare the show in TOC Attribute
- * @param settings
- * @param name
+ * @param {Object} settings
+ * @param {string} name
  */
 const setTOCSidebarAttribute = ( settings, name ) => {
 	if ( ! TOCBlocksAllowed.includes( name ) ) {
@@ -53,20 +53,21 @@ const addTOCAttributes = createHigherOrderComponent( ( BlockEdit ) => {
 				<BlockEdit { ...props } />
 				{ isSelected && (
 					<InspectorAdvancedControls>
-						<BaseControl
-							label={ __(
-								'Table of content',
-								'blockparty-table-of-content'
-							) }
-						>
+						<BaseControl>
+							<BaseControl.VisualLabel>
+								{ __(
+									'Table of content',
+									'blockparty-table-of-content'
+								) }
+							</BaseControl.VisualLabel>
 							<ToggleControl
 								label={ __(
 									'Display in table of content',
 									'blockparty-table-of-content'
 								) }
 								checked={ showInTOC }
-								onChange={ ( showInTOC ) =>
-									setAttributes( { showInTOC } )
+								onChange={ ( value ) =>
+									setAttributes( { showInTOC: value } )
 								}
 							/>
 						</BaseControl>
