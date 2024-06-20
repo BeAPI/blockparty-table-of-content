@@ -2,7 +2,7 @@
 Contributors:      beapi
 Tags:              block, table of content
 Tested up to:      6.5
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,3 +19,8 @@ This plugin adds a block to the WordPress block editor that allows you to add a 
 
 = 1.0.0 =
 * Initial release
+
+= 1.0.1 =
+* Add missing data-toc-level attribute to the toc list items in Editor.
+* Fix regex on heading parse in render method.
+* Fix Lint JS errors
