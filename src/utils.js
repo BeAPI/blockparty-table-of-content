@@ -19,9 +19,11 @@ export const getPostHeadings = ( blocks = [], levels ) => {
 			( TOCBlocksAllowed.includes( block.name ) &&
 				block.attributes.showInTOC )
 		) {
+			const blockLevel = block.attributes.level || 2; // Default level for non-heading blocks.
 			return {
 				title: block.attributes.content || block.attributes.text,
 				clientId: block.clientId,
+				level: blockLevel,
 			};
 		}
 		// Recursively get headings from inner blocks.

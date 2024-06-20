@@ -4,7 +4,7 @@
  * Description:       A table of content block.
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Be API Technical team
  * Author URI:        https://beapi.fr
  * License:           GPL-2.0-or-later
@@ -16,7 +16,7 @@
 
 namespace Beapi\Toc_Block;
 
-define( 'BEAPI_TOC_BLOCK_VERSION', '1.0.0' );
+define( 'BEAPI_TOC_BLOCK_VERSION', '1.0.1' );
 define( 'BEAPI_TOC_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -244,7 +244,7 @@ function parse_headings_blocks( $blocks, $levels ): array {
 			];
 
 			// Use existing ID or generate one if don't exist.
-			if ( false !== preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
+			if ( preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
 				$heading['id'] = $matches[1];
 			} else {
 				$heading['id'] = sanitize_title( $block_content );
