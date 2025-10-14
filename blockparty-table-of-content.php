@@ -269,15 +269,11 @@ function render_block( $block_content, $block ): string {
 	$is_block_in_toc = is_block_in_toc( $block );
 
 	if ( $is_block_in_toc ) {
-		$dom = new \DOMDocument();
-		// htmlspecialchars_decode( htmlentities() ) is used to avoid encoding issues with special characters.
+		$block_content = mb_convert_encoding( $block_content, 'HTML-ENTITIES', 'UTF-8' );
+		$dom           = new \DOMDocument( '1.0', 'utf-8' );
+
 		// LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD is used to avoid adding html and body tags.
-		$dom->loadHTML(
-			htmlspecialchars_decode(
-				htmlentities( $block_content )
-			),
-			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
-		);
+		$dom->loadHTML( $block_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
 
 		if ( ! $dom ) {
 			return $block_content;
@@ -287,7 +283,8 @@ function render_block( $block_content, $block ): string {
 
 		// Set block ID if HTML is not empty and block does not have an ID.
 		if ( $block_html && ! $block_html->getAttribute( 'id' ) ) {
-			$block_html->setAttribute( 'id', sanitize_title( $block_html->textContent ) ); //phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+			// htmlspecialchars_decode( htmlentities() ) is used to avoid encoding issues with special characters.
+			$block_html->setAttribute( 'id', sanitize_title( htmlspecialchars_decode( htmlentities( $block_html->textContent ) ) ) ); //phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 			$updated_block_content = $dom->saveHTML();
 			if ( false !== $updated_block_content ) {
 				$block_content = $updated_block_content;
