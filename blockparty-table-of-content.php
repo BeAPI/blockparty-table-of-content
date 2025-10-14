@@ -266,6 +266,10 @@ function parse_headings_blocks( $blocks, $levels ): array {
  * @return string
  */
 function render_block( $block_content, $block ): string {
+	if ( empty( $block_content ) || empty( $block ) ) {
+		return '';
+	}
+
 	$is_block_in_toc = is_block_in_toc( $block );
 
 	if ( $is_block_in_toc ) {
