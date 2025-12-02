@@ -244,10 +244,10 @@ function parse_headings_blocks( $blocks, $levels ): array {
 			];
 
 			// Use existing ID or generate one if don't exist.
-			if ( preg_match( '/id="([^"]*)"/', $block_content, $matches ) ) {
+			if ( preg_match( '/^<\w+[^>]*\s+id="([^"]*)"[^>]*>/i', trim( $block_content ), $matches ) ) {
 				$heading['id'] = $matches[1];
 			} else {
-				$heading['id'] = sanitize_title( $block_content );
+				$heading['id'] = sanitize_title( wp_strip_all_tags( $block_content ));
 			}
 
 			$headings[] = $heading;
@@ -273,27 +273,15 @@ function render_block( $block_content, $block ): string {
 	$is_block_in_toc = is_block_in_toc( $block );
 
 	if ( $is_block_in_toc ) {
-		$block_content = mb_convert_encoding( $block_content, 'HTML-ENTITIES', 'UTF-8' );
-		$dom           = new \DOMDocument( '1.0', 'utf-8' );
-
-		// LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD is used to avoid adding html and body tags.
-		$dom->loadHTML( $block_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-
-		if ( ! $dom ) {
+		// Regex to find id attribute only in the first tag occurrence
+		if ( preg_match( '/^<\w+[^>]*\s+id="([^"]*)"[^>]*>/i', trim( $block_content ), $matches ) ) {
 			return $block_content;
 		}
 
-		$block_html = $dom->documentElement;  //phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+		$slug = sanitize_title( wp_strip_all_tags( $block_content ) );
 
-		// Set block ID if HTML is not empty and block does not have an ID.
-		if ( $block_html && ! $block_html->getAttribute( 'id' ) ) {
-			// htmlspecialchars_decode( htmlentities() ) is used to avoid encoding issues with special characters.
-			$block_html->setAttribute( 'id', sanitize_title( htmlspecialchars_decode( htmlentities( $block_html->textContent ) ) ) ); //phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-			$updated_block_content = $dom->saveHTML();
-			if ( false !== $updated_block_content ) {
-				$block_content = $updated_block_content;
-			}
-		}
+		return preg_replace( '/>/i', ' id="' . $slug . '">', $block_content );
+
 	}
 
 	return $block_content;
