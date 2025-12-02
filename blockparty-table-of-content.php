@@ -247,7 +247,7 @@ function parse_headings_blocks( $blocks, $levels ): array {
 			if ( preg_match( '/^<\w+[^>]*\s+id="([^"]*)"[^>]*>/i', trim( $block_content ), $matches ) ) {
 				$heading['id'] = $matches[1];
 			} else {
-				$heading['id'] = sanitize_title( wp_strip_all_tags( $block_content ));
+				$heading['id'] = sanitize_title( wp_strip_all_tags( $block_content ) );
 			}
 
 			$headings[] = $heading;
