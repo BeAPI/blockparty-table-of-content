@@ -2,7 +2,7 @@
 Contributors:      beapi
 Tags:              block, table of content
 Tested up to:      6.5
-Stable tag:        1.0.2
+Stable tag:        1.0.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,9 @@ This plugin adds a block to the WordPress block editor that allows you to add a 
 1. View of the block inside the WordPress editor, styles settings opened.
 
 == Changelog ==
+
+= 1.0.3 =
+* Replace DOMDocument by regexp
 
 = 1.0.2 =
 * Fix special char convertion inside heading content in render_block method
