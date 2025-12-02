@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.3 - 2025-12-02
+* Replace DOMDocument by regexp
+
 ## 1.0.2 - 2025-10-14
 * Fix special char convertion inside heading content in render_block method
 * Check block_content & block variables in render_block method
