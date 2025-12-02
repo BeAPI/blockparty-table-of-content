@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blockparty/table-of-content",
+  "version": "1.0.3",
+  "title": "Table of content",
+  "category": "widgets",
+  "icon": "editor-ul",
+  "description": "Display a table of content for a post.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "multiple": false
+  },
+  "textdomain": "blockparty-table-of-content",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "levels": {
+      "type": "array",
+      "default": [
+        2
+      ]
+    },
+    "sticky": {
+      "type": "boolean",
+      "default": false
+    },
+    "stickyTop": {
+      "type": "string",
+      "default": ""
+    },
+    "stickyActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "linksColor": {
+      "type": "string",
+      "default": ""
+    },
+    "linksActiveColor": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "styles": [
+    {
+      "name": "toc-default",
+      "label": "Default",
+      "isDefault": true
+    },
+    {
+      "name": "toc-ordered",
+      "label": "Ordered list"
+    },
+    {
+      "name": "toc-unordered",
+      "label": "Unordered list"
+    }
+  ]
+}
