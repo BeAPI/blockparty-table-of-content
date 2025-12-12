@@ -4,7 +4,7 @@
  * Description:       A table of content block.
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Version:           1.0.3
+ * Version:           1.0.4
  * Author:            Be API Technical team
  * Author URI:        https://beapi.fr
  * License:           GPL-2.0-or-later
@@ -16,7 +16,7 @@
 
 namespace Beapi\Toc_Block;
 
-define( 'BEAPI_TOC_BLOCK_VERSION', '1.0.3' );
+define( 'BEAPI_TOC_BLOCK_VERSION', '1.0.4' );
 define( 'BEAPI_TOC_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -280,7 +280,7 @@ function render_block( $block_content, $block ): string {
 
 		$slug = sanitize_title( wp_strip_all_tags( $block_content ) );
 
-		return preg_replace( '/>/i', ' id="' . $slug . '">', $block_content );
+		return preg_replace( '/>/i', ' id="' . $slug . '">', $block_content, 1 );
 
 	}
 
