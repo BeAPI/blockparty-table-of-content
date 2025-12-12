@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4 - 2025-12-12
+* Fix bug of id added to many times
+
 ## 1.0.3 - 2025-12-02
 * Replace DOMDocument by regexp
 
