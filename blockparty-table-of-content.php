@@ -280,7 +280,7 @@ function render_block( $block_content, $block ): string {
 
 		$slug = sanitize_title( wp_strip_all_tags( $block_content ) );
 
-		return preg_replace( '/>/i', ' id="' . $slug . '">', $block_content );
+		return preg_replace( '/>/i', ' id="' . $slug . '">', $block_content, 1 );
 
 	}
 
