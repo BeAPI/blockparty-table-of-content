@@ -180,7 +180,6 @@ function clean_post_cache( int $post_id ) {
 	wp_cache_delete( $post_id, BEAPI_TOC_BLOCK_CACHE_GROUP );
 }
 
-
 /**
  * Get headings from a post content.
  *
@@ -267,7 +266,7 @@ function parse_headings_blocks( $blocks, $levels ): array {
  */
 function render_block( $block_content, $block ): string {
 	if ( empty( $block_content ) || empty( $block ) ) {
-		return '';
+		return $block_content;
 	}
 
 	$is_block_in_toc = is_block_in_toc( $block );
