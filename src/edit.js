@@ -17,9 +17,9 @@ import {
 	TextControl,
 	PanelBody,
 	ToggleControl,
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
-	__experimentalUnitControl as UnitControl,
+	__experimentalToggleGroupControl as ToggleGroupControl, // eslint-disable-line
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon, // eslint-disable-line
+	__experimentalUnitControl as UnitControl, // eslint-disable-line
 } from '@wordpress/components';
 import { useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
