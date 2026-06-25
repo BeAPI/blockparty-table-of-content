@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Be API Table of content Block
+ * Plugin Name:       Blockparty Table of content
  * Description:       A table of content block.
  * Requires at least: 6.0
  * Requires PHP:      7.4

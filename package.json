@@ -13,18 +13,29 @@
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
-		"env": "wp-env",
 		"make-pot": "wp i18n make-pot . languages/blockparty-table-of-content.pot --slug=blockparty-table-of-content --domain=blockparty-table-of-content --exclude=node_modules,src",
-		"make-json": "wp i18n make-json languages/ --no-purge"
+		"make-json": "wp i18n make-json languages/ --no-purge",
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop"
 	},
 	"devDependencies": {
-		"@wordpress/env": "^10.0.0",
-		"@wordpress/scripts": "^27.9.0"
+		"@wordpress/env": "latest",
+		"@wordpress/icons": "^15.0.0",
+		"@wordpress/scripts": "^32.4.1"
 	},
 	"dependencies": {
+		"@wordpress/block-editor": "latest",
+		"@wordpress/blocks": "latest",
+		"@wordpress/components": "latest",
+		"@wordpress/compose": "latest",
+		"@wordpress/data": "latest",
+		"@wordpress/element": "latest",
+		"@wordpress/i18n": "latest",
+		"@wordpress/icons": "latest",
+		"@wordpress/rich-text": "latest",
 		"classnames": "^2.5.1"
 	},
 	"volta": {
-		"node": "20.14.0"
+		"node": "24.18.0"
 	}
 }
