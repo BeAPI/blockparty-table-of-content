@@ -2,7 +2,7 @@
 Contributors:      beapi
 Tags:              block, table of content
 Tested up to:      6.5
-Stable tag:        1.0.4
+Stable tag:        1.0.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,13 @@ This plugin adds a block to the WordPress block editor that allows you to add a 
 1. View of the block inside the WordPress editor, styles settings opened.
 
 == Changelog ==
+
+= 1.0.5 =
+* Rename plugin to "Blockparty Table of content"
+* Improve heading level selector in the block editor with an icon toggle group
+* Disable TOC link navigation in the editor preview
+* Fix render when empty block parameters are provided
+* Add WordPress Playground blueprint for live demo
 
 = 1.0.4 =
 * Fix bug of id added to many times
