@@ -2,21 +2,15 @@ name: Javascript Quality Checks
 
 on:
   pull_request:
-    # Only run if JS-related files changed.
-    paths:
-      - '.github/workflows/quality-js.yml'
-      - '**.js'
-      - 'package.json'
-      - 'package-lock.json'
+      paths:
+          - 'src/**'
+          - 'package.json'
   push:
-    branches:
+      paths:
+          - 'src/**'
+          - 'package.json'
+      branches:
       - main
-    # Only run if JS-related files changed.
-    paths:
-      - '.github/workflows/quality-js.yml'
-      - '**.js'
-      - 'package.json'
-      - 'package-lock.json'
 
 # Cancels all previous workflow runs for pull requests that have not completed.
 concurrency:
@@ -37,7 +31,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'package.json'
+            node-version-file: 'package.json'
 
       - name: Install npm dependencies
         run: npm ci
