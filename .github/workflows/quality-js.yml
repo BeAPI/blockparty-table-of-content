@@ -2,15 +2,21 @@ name: Javascript Quality Checks
 
 on:
   pull_request:
-      paths:
-          - 'src/**'
-          - 'package.json'
+    # Only run if JS-related files changed.
+    paths:
+      - '.github/workflows/quality-js.yml'
+      - '**.js'
+      - 'package.json'
+      - 'package-lock.json'
   push:
-      paths:
-          - 'src/**'
-          - 'package.json'
-      branches:
+    branches:
       - main
+    # Only run if JS-related files changed.
+    paths:
+      - '.github/workflows/quality-js.yml'
+      - '**.js'
+      - 'package.json'
+      - 'package-lock.json'
 
 # Cancels all previous workflow runs for pull requests that have not completed.
 concurrency:
