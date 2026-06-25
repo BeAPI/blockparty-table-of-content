@@ -20,9 +20,16 @@
 	},
 	"devDependencies": {
 		"@wordpress/env": "latest",
+		"@wordpress/icons": "^15.0.0",
 		"@wordpress/scripts": "^32.4.1"
 	},
 	"dependencies": {
+		"@wordpress/block-editor": "latest",
+		"@wordpress/blocks": "latest",
+		"@wordpress/components": "latest",
+		"@wordpress/element": "latest",
+		"@wordpress/i18n": "latest",
+		"@wordpress/icons": "latest",
 		"classnames": "^2.5.1"
 	},
 	"volta": {

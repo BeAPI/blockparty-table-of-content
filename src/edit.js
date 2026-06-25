@@ -7,7 +7,7 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
@@ -16,12 +16,22 @@ import {
 import {
 	TextControl,
 	PanelBody,
-	BaseControl,
-	CheckboxControl,
 	ToggleControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
+import { useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
+import {
+	headingLevel1,
+	headingLevel2,
+	headingLevel3,
+	headingLevel4,
+	headingLevel5,
+	headingLevel6,
+} from '@wordpress/icons';
+import classnames from 'classnames';
 
 /**
  * Internal dependencies
@@ -31,6 +41,15 @@ import TableOfContentList from './list';
 import './editor.scss';
 
 const LEVELS_AVAILABLE = [ 1, 2, 3, 4, 5, 6 ];
+
+const HEADING_LEVEL_ICONS = {
+	1: headingLevel1,
+	2: headingLevel2,
+	3: headingLevel3,
+	4: headingLevel4,
+	5: headingLevel5,
+	6: headingLevel6,
+};
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
@@ -62,12 +81,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		},
 	} );
 
-	/**
-	 * Update levels
-	 *
-	 * @param {string} checked
-	 * @param {number} level
-	 */
+	const lastChangedLevel = useRef( null );
+
 	const onCheckLevel = ( checked, level ) => {
 		const checklistValues = levels.filter( ( value ) => value !== level );
 		if ( checked ) {
@@ -76,38 +91,62 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { levels: checklistValues } );
 	};
 
+	const onLevelChange = ( newValue ) => {
+		if ( newValue === undefined ) {
+			if ( lastChangedLevel.current !== null ) {
+				onCheckLevel( false, lastChangedLevel.current );
+				lastChangedLevel.current = null;
+			}
+			return;
+		}
+
+		const level = Number( newValue );
+		lastChangedLevel.current = level;
+		onCheckLevel( ! levels.includes( level ), level );
+	};
+
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody
 					title={ __( 'Content', 'blockparty-table-of-content' ) }
 				>
-					<BaseControl
+					<ToggleGroupControl
+						label={ __(
+							'Heading levels',
+							'blockparty-table-of-content'
+						) }
 						help={ __(
 							'Heading levels to show in the table of content. Other individually activated blocks may also appear.',
 							'blockparty-table-of-content'
 						) }
-						className="components-base-control__toc-levels"
+						isDeselectable
+						__next40pxDefaultSize
+						onChange={ onLevelChange }
+						className={ classnames(
+							'components-base-control__toc-levels',
+							levels.map(
+								( level ) =>
+									`components-base-control__toc-levels--level-${ level }-selected`
+							)
+						) }
 					>
-						<BaseControl.VisualLabel>
-							{ __(
-								'Heading levels',
-								'blockparty-table-of-content'
-							) }
-						</BaseControl.VisualLabel>
 						{ LEVELS_AVAILABLE.map( ( level ) => (
-							<CheckboxControl
+							<ToggleGroupControlOptionIcon
 								key={ level }
-								label={ 'H' + level }
-								checked={
-									levels.includes( level ) ? true : false
-								}
-								onChange={ ( checked ) =>
-									onCheckLevel( checked, level )
-								}
+								value={ level }
+								icon={ HEADING_LEVEL_ICONS[ level ] }
+								label={ sprintf(
+									/* translators: %d: heading level e.g. 1, 2, 3 */
+									__(
+										'Heading %d',
+										'blockparty-table-of-content'
+									),
+									level
+								) }
 							/>
 						) ) }
-					</BaseControl>
+					</ToggleGroupControl>
 
 					<TextControl
 						label={ __(
