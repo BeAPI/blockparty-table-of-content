@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "blockparty/table-of-content",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"title": "Table of content",
 	"category": "widgets",
 	"icon": "editor-ul",
@@ -24,7 +24,9 @@
 		},
 		"levels": {
 			"type": "array",
-			"default": [ 2 ]
+			"default": [
+				2
+			]
 		},
 		"sticky": {
 			"type": "boolean",
