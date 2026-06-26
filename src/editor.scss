@@ -1,21 +1,25 @@
 .editor-styles-wrapper {
-    .blockparty-table-of-content {
-        &--sticky {
-            position: sticky;
-        }
+	.blockparty-table-of-content {
+		&--sticky {
+			position: sticky;
+		}
 
-        &__list {
-            &-item {
-                a {
-                    color: var(--blockparty-table-of-content--links-color);
-                }
-            }
-        }
-    }
+		&__list {
+			&-item {
+				a {
+					pointer-events: none;
+					color: var(--blockparty-table-of-content--links-color);
+				}
+			}
+		}
+	}
 }
 
-.components-base-control__toc-levels {
-    .components-checkbox-control {
-        margin-bottom: 0;
-    }
+@for $level from 1 through 6 {
+	.components-base-control__toc-levels--level-#{$level}-selected {
+		button[data-value="#{$level}"] {
+			color: var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
+			font-weight: 500;
+		}
+	}
 }

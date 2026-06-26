@@ -37,7 +37,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'package.json'
+            node-version-file: 'package.json'
 
       - name: Install npm dependencies
         run: npm ci

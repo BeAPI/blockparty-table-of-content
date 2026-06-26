@@ -1,0 +1,32 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/blockparty-table-of-content-demo/",
+	"preferredVersions": {
+		"php": "8.1",
+		"wp": "latest"
+	},
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/BeAPI/blockparty-table-of-content",
+				"ref": "1.0.5",
+				"refType": "tag"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "blockparty-table-of-content"
+			}
+		},
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire_once '/wordpress/wp-load.php';\n$post_content = <<<'BLOCKPARTY_TOC_MARKUP_EOF'\n<!-- wp:paragraph -->\n<p>This page demonstrates the Blockparty Table of content block. The table below automatically links to the headings on this page.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:blockparty/table-of-content {\"levels\":[2,3,4,5,6]} /-->\n\n<!-- wp:spacer {\"height\":\"var:preset|spacing|50\"} -->\n<div style=\"height:var(--wp--preset--spacing--50)\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\n<!-- /wp:spacer -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Introduction</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Johannes Gensfleisch zur Laden zum Gutenberg (c. 1393–1406 – 3 February 1468) was a German inventor and craftsman who invented the movable-type printing press. His invention enabled a much faster rate of printing and later spread across the world, leading to an information revolution and the unprecedented mass-spread of literature throughout Europe.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">Early life</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Gutenberg was born in the German city of Mainz, the youngest son of the upper-class merchant Friele Gensfleisch zur Laden and his second wife, Else Wyrich.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">Printing press</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>His major work, the Gutenberg Bible, has been acclaimed for its high aesthetic and technical quality. It is widely regarded as a milestone in the history of printing.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">The Gutenberg Bible</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Also known as the 42-line Bible, it was the first major book printed using mass-produced movable metal type in Europe.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Legacy</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Gutenberg's invention of mechanical movable type printing started the Printing Revolution in Europe and is widely regarded as the most important event of the modern period.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">Impact on society</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>The spread of printing across Europe gave rise to the Renaissance, the Reformation, the Age of Enlightenment, and the Scientific Revolution.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">Cultural influence</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Printing facilitated the dissemination of knowledge and ideas, making books affordable for the first time to a large segment of the population.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">Modern typography</h5>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Gutenberg's work laid the foundation for modern typography and graphic design, influencing how information is structured and presented to this day.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":6} -->\n<h6 class=\"wp-block-heading\">Further reading</h6>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph {\"align\":\"right\",\"fontSize\":\"small\"} -->\n<p class=\"has-text-align-right has-small-font-size\">Source : <a href=\"https://en.wikipedia.org/wiki/Johannes_Gutenberg\">Wikipedia</a></p>\n<!-- /wp:paragraph -->\nBLOCKPARTY_TOC_MARKUP_EOF;\n\n$page_id = wp_insert_post(\n\tarray(\n\t\t'post_title'   => 'Blockparty Table of content',\n\t\t'post_name'    => 'blockparty-table-of-content-demo',\n\t\t'post_content' => $post_content,\n\t\t'post_status'  => 'publish',\n\t\t'post_type'    => 'page',\n\t)\n);\necho 'Page created with ID: ' . $page_id;\n?>"
+		}
+	]
+}

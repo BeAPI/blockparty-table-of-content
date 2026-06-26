@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:       Be API Table of content Block
+ * Plugin Name:       Blockparty Table of content
  * Description:       A table of content block.
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            Be API Technical team
  * Author URI:        https://beapi.fr
  * License:           GPL-2.0-or-later
@@ -16,7 +16,7 @@
 
 namespace Beapi\Toc_Block;
 
-define( 'BEAPI_TOC_BLOCK_VERSION', '1.0.4' );
+define( 'BEAPI_TOC_BLOCK_VERSION', '1.0.5' );
 define( 'BEAPI_TOC_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BEAPI_TOC_BLOCK_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -180,7 +180,6 @@ function clean_post_cache( int $post_id ) {
 	wp_cache_delete( $post_id, BEAPI_TOC_BLOCK_CACHE_GROUP );
 }
 
-
 /**
  * Get headings from a post content.
  *
@@ -267,7 +266,7 @@ function parse_headings_blocks( $blocks, $levels ): array {
  */
 function render_block( $block_content, $block ): string {
 	if ( empty( $block_content ) || empty( $block ) ) {
-		return '';
+		return $block_content;
 	}
 
 	$is_block_in_toc = is_block_in_toc( $block );
