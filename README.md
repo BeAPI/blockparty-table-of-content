@@ -20,3 +20,11 @@ function custom_toc_third_blocks_included( $blocks ) {
 }
 
 ```
+
+## Workflow deployment
+
+See the [release process](DEPLOYMENT.md). 
+
+## Changelog
+
+See the [changelog](CHANGELOG.md). 
