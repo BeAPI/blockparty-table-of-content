@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6 - 2026-08-28
+
+* Fix frontend TOC initialization by waiting for DOMContentLoaded
+
 ## 1.0.5 - 2026-06-25
 
 * Rename plugin to "Blockparty Table of content"
