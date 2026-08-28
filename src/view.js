@@ -2,7 +2,7 @@
 'use strict';
 
 class TOC {
-	constructor(tocNodes) {
+	constructor( tocNodes ) {
 		this.toc = tocNodes;
 
 		this.tocLinks = this.toc.querySelectorAll(
@@ -14,17 +14,17 @@ class TOC {
 			this.headingsScrollObserver
 		);
 
-		if (this.tocLinks.length) {
-			const idsFromLinks = Array.from(this.tocLinks).map((el) =>
-				el.getAttribute('href').replace('#', '')
+		if ( this.tocLinks.length ) {
+			const idsFromLinks = Array.from( this.tocLinks ).map( ( el ) =>
+				el.getAttribute( 'href' ).replace( '#', '' )
 			);
 
-			if (idsFromLinks.length) {
-				for (const id of idsFromLinks) {
-					const heading = document.getElementById(id);
-					if (heading) {
-						this.headings.push(heading);
-						observer.observe(heading);
+			if ( idsFromLinks.length ) {
+				for ( const id of idsFromLinks ) {
+					const heading = document.getElementById( id );
+					if ( heading ) {
+						this.headings.push( heading );
+						observer.observe( heading );
 					}
 				}
 			}
@@ -37,17 +37,17 @@ class TOC {
 	 * @param {HTMLElement} el
 	 * @return {boolean} true if the element is in the viewport
 	 */
-	isElementInViewport = (el) => {
+	isElementInViewport = ( el ) => {
 		const rect = el.getBoundingClientRect();
 
 		return (
 			rect.top >= -1 &&
 			rect.left >= 0 &&
 			rect.bottom <=
-			(window.innerHeight ||
-				document.documentElement.clientHeight) &&
+				( window.innerHeight ||
+					document.documentElement.clientHeight ) &&
 			rect.right <=
-			(window.innerWidth || document.documentElement.clientWidth)
+				( window.innerWidth || document.documentElement.clientWidth )
 		);
 	};
 
@@ -56,34 +56,34 @@ class TOC {
 	 *
 	 * @param {IntersectionObserverEntry[]} entries
 	 */
-	headingsScrollObserver = (entries) => {
+	headingsScrollObserver = ( entries ) => {
 		// Get all entries that have just come into the viewport
 		const allHeadings = new Set(
 			entries
-				.filter((entry) => entry.isIntersecting === true)
-				.map((entry) => entry.target)
+				.filter( ( entry ) => entry.isIntersecting === true )
+				.map( ( entry ) => entry.target )
 		);
 
 		let currentHeading;
 
-		for (let i = 0; i < this.headings.length; i++) {
-			currentHeading = this.headings[i];
+		for ( let i = 0; i < this.headings.length; i++ ) {
+			currentHeading = this.headings[ i ];
 			// If the section is in the viewport or it has just intersected, set it as active
 			if (
-				this.isElementInViewport(currentHeading) ||
-				allHeadings.has(currentHeading)
+				this.isElementInViewport( currentHeading ) ||
+				allHeadings.has( currentHeading )
 			) {
 				// Disable all links and active the current one.
-				for (const link of this.tocLinks) {
+				for ( const link of this.tocLinks ) {
 					link.parentElement.setAttribute(
 						'data-toc-active',
 						'false'
 					);
 				}
 				const link = this.toc.querySelector(
-					`a[href="#${currentHeading.id}"]`
+					`a[href="#${ currentHeading.id }"]`
 				);
-				if (link) {
+				if ( link ) {
 					link.parentElement.setAttribute(
 						'data-toc-active',
 						'true'
@@ -99,13 +99,13 @@ function initTableOfContent() {
 	const tocBlocks = document.querySelectorAll(
 		'.blockparty-table-of-content'
 	);
-	for (let i = 0; i < tocBlocks.length; i++) {
-		new TOC(tocBlocks[i]);
+	for ( let i = 0; i < tocBlocks.length; i++ ) {
+		new TOC( tocBlocks[ i ] );
 	}
 }
 
-if (document.readyState === 'loading') {
-	document.addEventListener('DOMContentLoaded', initTableOfContent);
+if ( document.readyState === 'loading' ) {
+	document.addEventListener( 'DOMContentLoaded', initTableOfContent );
 } else {
 	initTableOfContent();
 }
