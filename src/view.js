@@ -95,11 +95,17 @@ class TOC {
 	};
 }
 
-window.addEventListener( 'load', function () {
+function initTableOfContent() {
 	const tocBlocks = document.querySelectorAll(
 		'.blockparty-table-of-content'
 	);
 	for ( let i = 0; i < tocBlocks.length; i++ ) {
 		new TOC( tocBlocks[ i ] );
 	}
-} );
+}
+
+if ( document.readyState === 'loading' ) {
+	document.addEventListener( 'DOMContentLoaded', initTableOfContent );
+} else {
+	initTableOfContent();
+}

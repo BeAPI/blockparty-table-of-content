@@ -24,9 +24,7 @@
 		},
 		"levels": {
 			"type": "array",
-			"default": [
-				2
-			]
+			"default": [ 2 ]
 		},
 		"sticky": {
 			"type": "boolean",
